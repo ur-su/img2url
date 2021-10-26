@@ -1,0 +1,87 @@
+{
+  "name": "img2url",
+	"displayName": "img2url",
+	"description": "",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.61.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+        "onCommand:img2url.helloWorld"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [{
+            "command": "img2url.helloWorld",
+            "title": "Img2Url"
+		},{
+			"command":"extension.choosedImage",
+			"title" :"上传图片"
+		}],
+		"menus": {
+			"editor/context": [
+			  {
+				"when": "editorFocus",
+				"command": "extension.choosedImage",
+				"group": "navigation"
+			  }
+			]
+		  },
+		"configuration":[
+			{
+				"title": "压缩图片",
+				"properties": {
+					"upload_image.domain": {
+					  "type": "string",
+					  "default": "",
+					  "description": "设置上传域名"
+					},
+					"upload_image.accessKey": {
+					  "type": "string",
+					  "default": "",
+					  "description": "设置oss上传accessKey"
+					},
+					"upload_image.secretKey": {
+					  "type": "string",
+					  "default": "",
+					  "description": "设置oss上传secretKey"
+					},
+					"upload_image.scope": {
+					  "type": "string",
+					  "default": "",
+					  "description": "设置oss上传上传空间"
+					},
+					"upload_image.gzip": {
+					  "type": "boolean",
+					  "default": "true",
+					  "description": "是否启用图片压缩"
+					}
+				  }
+			}
+			
+		]
+		
+
+	},
+	
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js"
+	},
+	"devDependencies": {
+        "@types/vscode": "^1.61.0",
+        "@types/glob": "^7.1.4",
+        "@types/mocha": "^9.0.0",
+        "@types/node": "14.x",
+        "eslint": "^7.32.0",
+        "glob": "^7.1.7",
+        "mocha": "^9.1.1",
+        "typescript": "^4.4.3",
+        "@vscode/test-electron": "^1.6.2"
+    }
+
+}
